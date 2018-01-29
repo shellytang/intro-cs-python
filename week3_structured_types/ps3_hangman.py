@@ -134,34 +134,36 @@ def hangman(secretWord):
     wordLen = len(secretWord)
     lettersGuessed = []
     guessesLeft = 8
-    available = getAvailableLetters(lettersGuessed)
-    
+    availableLetters = getAvailableLetters(lettersGuessed)
+
     gameStatus = getGuessedWord(secretWord, lettersGuessed)
 
-    print('Welcome to the game, Hangman!')
-    print('I am thinking of a word that is ' + str(wordLen) + ' letters long.')
-    # print('You have ' + str(guessesLeft) + ' left.')
-    # print('Available letters  ' + available)
-    
+    print('Welcome to the game Hangman!')
+    print('I am thinking of a word that is ' + str(wordLen) + ' letters long')
+    print('-----------')
+
     while guessesLeft > 0:
-        print('You have ' + str(guessesLeft) + ' guesses left.')
-        print('Available letters  ' + available)
+        print('You have ' + str(guessesLeft) + ' guesses left')
+        print('Available Letters: ' + availableLetters)
         currentGuess = input('Please guess a letter: ')
         if checkForUnique(lettersGuessed, currentGuess):
             lettersGuessed.append(currentGuess)
             result = getGuessedWord(secretWord, lettersGuessed)
-            available = getAvailableLetters(lettersGuessed)
+            availableLetters = getAvailableLetters(lettersGuessed)
             if result == gameStatus:
                 print('Oops! That letter is not in my word: ' + gameStatus)
+                print('-----------')
                 guessesLeft -= 1
             else:
                 print('Good guess: ' + result)
+                print('-----------')
                 gameStatus = result
                 if isWordGuessed(secretWord, lettersGuessed):
                     return('Congratulations, you won!')
-        else: 
+        else:
             print('Oops! You\'ve already guessed that letter: ' + gameStatus)
-    
+            print('-----------')
+
     return('Sorry, you ran out of guesses. The word was ' + secretWord + '.')
 
 # When you've completed your hangman function, uncomment these two lines
