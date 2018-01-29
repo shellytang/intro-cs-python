@@ -95,6 +95,20 @@ def getAvailableLetters(lettersGuessed):
 
 # print(getAvailableLetters(['e', 'i', 'k', 'p', 'r', 's']))
 
+
+def checkForUnique(lettersGuessed, current):
+    '''
+    lettersGuessed: list, what letters have been guessed so far
+    current: string, letter that user has guessed
+    returns: bool, true if letter has not already been guessed, or false if letter has already been guessed
+    '''
+    for letter in lettersGuessed:
+        if current == letter:
+            return False
+    return True
+
+# print(checkForUnique(['e', 'i', 'k', 'p', 'r', 's'], 'z'))
+
 def hangman(secretWord):
     '''
     secretWord: string, the secret word to guess.
@@ -116,16 +130,45 @@ def hangman(secretWord):
     Follows the other limitations detailed in the problem write-up.
     '''
     # FILL IN YOUR CODE HERE...
+    # initialLetters = string.ascii_lowercase
     wordLen = len(secretWord)
+    lettersGuessed = []
+    guessesLeft = 8
+    available = getAvailableLetters(lettersGuessed)
+    
+    gameStatus = getGuessedWord(secretWord, lettersGuessed)
+
     print('Welcome to the game, Hangman!')
-    print('I am thinking of a word that is ' + str(wordLen) + ' letters long')
-    print('You have 8 guesses left')
+    print('I am thinking of a word that is ' + str(wordLen) + ' letters long.')
+    # print('You have ' + str(guessesLeft) + ' left.')
+    # print('Available letters  ' + available)
+    
+    while guessesLeft > 0:
+        print('You have ' + str(guessesLeft) + ' guesses left.')
+        print('Available letters  ' + available)
+        currentGuess = input('Please guess a letter: ')
+        if checkForUnique(lettersGuessed, currentGuess):
+            lettersGuessed.append(currentGuess)
+            result = getGuessedWord(secretWord, lettersGuessed)
+            available = getAvailableLetters(lettersGuessed)
+            if result == gameStatus:
+                print('Oops! That letter is not in my word: ' + gameStatus)
+                guessesLeft -= 1
+            else:
+                print('Good guess: ' + result)
+                gameStatus = result
+                if isWordGuessed(secretWord, lettersGuessed):
+                    return('Congratulations, you won!')
+        else: 
+            print('Oops! You\'ve already guessed that letter: ' + gameStatus)
+    
+    return('Sorry, you ran out of guesses. The word was ' + secretWord + '.')
 
 # When you've completed your hangman function, uncomment these two lines
 # and run this file to test! (hint: you might want to pick your own
 # secretWord while you're testing)
 
-# secretWord = chooseWord(wordlist).lower()
-# hangman(secretWord)
-print(hangman('hello'))
+secretWord = chooseWord(wordlist).lower()
+print(hangman('secretWord'))
+
 
