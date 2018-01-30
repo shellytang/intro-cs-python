@@ -171,6 +171,6 @@ def hangman(secretWord):
 # secretWord while you're testing)
 
 secretWord = chooseWord(wordlist).lower()
-print(hangman('secretWord'))
+print(hangman(secretWord))
 
 
