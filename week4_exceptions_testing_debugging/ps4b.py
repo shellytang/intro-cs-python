@@ -103,6 +103,7 @@ def compPlayHand(hand, wordList, n):
 # Problem #6: Playing a game
 #
 #
+
 def playGame(wordList):
     """
     Allow the user to play an arbitrary number of hands.
@@ -130,39 +131,29 @@ def playGame(wordList):
     gameSelect = input('Enter n to deal a new hand, r to replay the last hand, or e to end game: ')
     hasHand = False
     while gameSelect != 'e':
-        if gameSelect == 'n':
-            hasHand = True
-            compOrUser = input('Enter u to have yourself play, c to have the computer play: ')
-            while compOrUser != 'u' and compOrUser != 'c':
-                print('Invalid command.')
-                print()
-                compOrUser = input('Enter u to have yourself play, c to have the computer play: ') 
-            if compOrUser == 'u':
-                hand = dealHand(HAND_SIZE)
-                playHand(hand, wordList, HAND_SIZE)
-            if compOrUser == 'c':
-                hand = dealHand(HAND_SIZE)
-                compPlayHand(hand, wordList, HAND_SIZE)
-        elif gameSelect == 'r':
-            if hasHand:
+        if gameSelect == 'n' or gameSelect == 'r':
+            if gameSelect == 'r' and not hasHand:
+                print('You have not played a hand yet. Please play a new hand first!')
+            else: 
                 compOrUser = input('Enter u to have yourself play, c to have the computer play: ')
+                hasHand = True
                 while compOrUser != 'u' and compOrUser != 'c':
                     print('Invalid command.')
                     print()
-                    compOrUser = input('Enter u to have yourself play, c to have the computer play: ')
-                if compOrUser == 'u':
+                    compOrUser = input('Enter u to have yourself play, c to have the computer play: ') 
+                if gameSelect == 'n' and compOrUser == 'u':
+                    hand = dealHand(HAND_SIZE)
                     playHand(hand, wordList, HAND_SIZE)
-                elif compOrUser == 'c':
+                if gameSelect == 'n' and compOrUser == 'c':
+                    hand = dealHand(HAND_SIZE)
                     compPlayHand(hand, wordList, HAND_SIZE)
-                else:
-                    print('Invalid command.')
-                    print()
-            else:
-                print('You have not played a hand yet. Please play a new hand first!')
+                if gameSelect == 'r' and compOrUser == 'u':
+                    playHand(hand, wordList, HAND_SIZE)
+                if gameSelect == 'r' and compOrUser == 'c':
+                    compPlayHand(hand, wordList, HAND_SIZE)
         else:
             print('Invalid command.')
         gameSelect = input('Enter n to deal a new hand, r to replay the last hand, or e to end game: ')
-
 
 #
 # Build data structures used for entire session and play game
