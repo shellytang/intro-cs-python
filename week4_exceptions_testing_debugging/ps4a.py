@@ -252,7 +252,8 @@ wordList = loadWords()
 # playHand({'n': 1, 'e': 1, 't': 1, 'a': 1, 'r': 1, 'i': 2}, wordList, 7)
 # playHand({'a': 1, 'z': 1}, wordList, 2)
 # playHand({'a': 2, 'e': 1, 'p': 2, 'r': 1, 'z': 1}, wordList, 7)
-playHand({'b': 2, 'c': 2, 'd': 1, 'i': 1, 'k': 1, 't': 1, 'u': 1, 'v': 1}, wordList, 10)
+# playHand({'b': 2, 'c': 2, 'd': 1, 'i': 1, 'k': 1, 't': 1, 'u': 1, 'v': 1}, wordList, 10)
+# playHand({'p': 1, 'u': 1, 'z': 1, 't': 3, 'o': 1}, wordList, 7)
 
 def playGame(wordList):
     """
@@ -266,12 +267,19 @@ def playGame(wordList):
  
     2) When done playing the hand, repeat from step 1    
     """
-    # TO DO ... <-- Remove this comment when you code this function
-    # <-- Remove this line when you code the function
-    print("playGame not yet implemented.")
-
-
-
+    gameSelect = input('Enter n to deal a new hand, r to replay the last hand, or e to end game: ')
+    while gameSelect != 'e':
+        if gameSelect == 'n':
+            hand = dealHand(HAND_SIZE)
+            playHand(hand, wordList, HAND_SIZE)
+        elif gameSelect == 'r':
+            try: 
+                playHand(hand, wordList, HAND_SIZE)
+            except NameError:
+                print('You have not played a hand yet. Please play a new hand first!')
+        else:
+            print('Invalid command.')
+        gameSelect = input('Enter n to deal a new hand, r to replay the last hand, or e to end game: ')
 #
 # Build data structures used for entire session and play game
 #
