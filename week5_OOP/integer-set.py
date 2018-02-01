@@ -26,7 +26,7 @@ class intSet(object):
         res = intSet()
         for item in other.vals:
             if self.member(item):
-                res.vals.append(item)
+                res.insert(item)
         return res
 
     def __len__(self):
@@ -36,8 +36,9 @@ s = intSet()
 print(s)
 s.insert(3)
 s.insert(4)
-s.insert(3)
+s.insert(5)
 # print(s)
 s.member(3)
 s.remove(3)
 print(s.__str__())
+print('len ', len(s))
