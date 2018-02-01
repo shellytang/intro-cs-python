@@ -21,6 +21,17 @@ class intSet(object):
             result = result + str(e) + ','
         return '{' + result[:-1] + '}'
 
+    def intersect(self, other):
+        assert type(other) == type(self)
+        res = intSet()
+        for item in other.vals:
+            if self.member(item):
+                res.vals.append(item)
+        return res
+
+    def __len__(self):
+        return len(self.vals)
+
 s = intSet()
 print(s)
 s.insert(3)
