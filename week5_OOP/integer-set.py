@@ -33,12 +33,10 @@ class intSet(object):
         return len(self.vals)
 
 s = intSet()
-print(s)
 s.insert(3)
 s.insert(4)
 s.insert(5)
-# print(s)
 s.member(3)
 s.remove(3)
-print(s.__str__())
+print(s)
 print('len ', len(s))
