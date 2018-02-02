@@ -4,7 +4,7 @@ def genOneMillion():
     while current < maxNum:
         current += 1
         yield current
-
+# range essentially
 test = genOneMillion()
 print(test.__next__())
 print(test.__next__())
