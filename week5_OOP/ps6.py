@@ -183,7 +183,7 @@ class PlaintextMessage(Message):
         
         Returns: a COPY of self.encrypting_dict
         '''
-        return self.encrypting_dict[:]
+        return self.encrypting_dict.copy()
 
     def get_message_text_encrypted(self):
         '''
@@ -204,8 +204,9 @@ class PlaintextMessage(Message):
 
         Returns: nothing
         '''
-        newShift = self.shift
-        self.shift = newShift
+        self.shift = shift
+        self.encrypting_dict = Message.build_shift_dict(self, shift)
+        self.message_text_encrypted = Message.apply_shift(self, shift)
 
 class CiphertextMessage(Message):
     def __init__(self, text):
@@ -242,8 +243,8 @@ class CiphertextMessage(Message):
 
 #Example test case (PlaintextMessage)
 plaintext = PlaintextMessage('hello', 2)
-print('Expected Output: jgnnq')
-print('Actual Output:', plaintext.get_message_text_encrypted())
+# print('Expected Output: jgnnq')
+# print('Actual Output:', plaintext.get_message_text_encrypted())
 
 #Example test case (CiphertextMessage)
 # ciphertext = CiphertextMessage('jgnnq')
