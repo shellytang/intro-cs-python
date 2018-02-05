@@ -110,8 +110,22 @@ class Message(object):
         Returns: a dictionary mapping a letter (string) to 
                  another letter (string). 
         '''
-        pass  # delete this line and replace with your code here
+        lowerCase = string.ascii_lowercase
+        upperCase = string.ascii_uppercase
+        letterDictionary = {}
+        def makeDictionary(typeOfStr, shift): 
+            for i in range(0, 26):
+                try: 
+                    letterDictionary[typeOfStr[i]] = typeOfStr[i+shift]
+                except IndexError:
+                    diff = (i+shift) - 26
+                    letterDictionary[typeOfStr[i]] = typeOfStr[diff]
+            return letterDictionary
 
+        makeDictionary(lowerCase, shift)
+        makeDictionary(upperCase, shift)
+        return letterDictionary
+            
     def apply_shift(self, shift):
         '''
         Applies the Caesar Cipher to self.message_text with the input shift.
@@ -125,8 +139,11 @@ class Message(object):
              down the alphabet by the input shift
         '''
         pass  # delete this line and replace with your code here
-
-
+        dictionary = self.build_shift_dict(shift)
+        shiftedMessage = ''
+        for letter in self.message_text:
+            shiftedMessage += dictionary[letter]
+        return shiftedMessage
 class PlaintextMessage(Message):
     def __init__(self, text, shift):
         '''
@@ -217,12 +234,13 @@ class CiphertextMessage(Message):
         pass  # delete this line and replace with your code here
 
 
+
 #Example test case (PlaintextMessage)
-plaintext = PlaintextMessage('hello', 2)
-print('Expected Output: jgnnq')
-print('Actual Output:', plaintext.get_message_text_encrypted())
+# plaintext = PlaintextMessage('hello', 2)
+# print('Expected Output: jgnnq')
+# print('Actual Output:', plaintext.get_message_text_encrypted())
 
 #Example test case (CiphertextMessage)
-ciphertext = CiphertextMessage('jgnnq')
-print('Expected Output:', (24, 'hello'))
-print('Actual Output:', ciphertext.decrypt_message())
+# ciphertext = CiphertextMessage('jgnnq')
+# print('Expected Output:', (24, 'hello'))
+# print('Actual Output:', ciphertext.decrypt_message())
