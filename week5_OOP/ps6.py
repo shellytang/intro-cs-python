@@ -142,7 +142,10 @@ class Message(object):
         dictionary = self.build_shift_dict(shift)
         shiftedMessage = ''
         for letter in self.message_text:
-            shiftedMessage += dictionary[letter]
+            try: 
+                shiftedMessage += dictionary[letter]
+            except KeyError:
+                shiftedMessage += letter
         return shiftedMessage
 class PlaintextMessage(Message):
     def __init__(self, text, shift):
