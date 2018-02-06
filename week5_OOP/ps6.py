@@ -54,7 +54,7 @@ def get_story_string():
     """
     Returns: a joke in encrypted text.
     """
-    f = open("story.txt", "r")
+    f = open("/Users/shellytang/mycode/intro-cs-python/week5_OOP/story.txt", "r")
     story = str(f.read())
     f.close()
     return story
@@ -257,12 +257,21 @@ class CiphertextMessage(Message):
         decryptedMessage = Message.apply_shift(self, bestShiftValue)
         return (bestShiftValue % 26, decryptedMessage)
 
+
+def decrypt_story():
+    storyString = get_story_string()
+    cipherText = CiphertextMessage(storyString)
+    return cipherText.decrypt_message()
+
+# print(decrypt_story())
+
 #Example test case (PlaintextMessage)
-plaintext = PlaintextMessage('Nonsense words: wax toward circular committee purple village eastern so number type message distance to cliff step', 11)
+# plaintext = PlaintextMessage('Nonsense words: wax toward circular committee purple village eastern so number type message distance to cliff step', 11)
 # print('Expected Output: jgnnq')
-print('Actual Output:', plaintext.get_message_text_encrypted())
+# print('Actual Output:', plaintext.get_message_text_encrypted())
 
 #Example test case (CiphertextMessage)
-ciphertext = CiphertextMessage('Yzydpydp hzcod: hli ezhlco ntcnfwlc nzxxteepp afcawp gtwwlrp pldepcy dz yfxmpc ejap xpddlrp otdelynp ez nwtqq depa')
+# ciphertext = CiphertextMessage('Yzydpydp hzcod: hli ezhlco ntcnfwlc nzxxteepp afcawp gtwwlrp pldepcy dz yfxmpc ejap xpddlrp otdelynp ez nwtqq depa')
 # print('Expected Output:', (24, 'hello'))
-print('Actual Output:', ciphertext.decrypt_message())
+# print('Actual Output:', ciphertext.decrypt_message())
+
