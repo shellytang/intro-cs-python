@@ -136,7 +136,6 @@ class Message(object):
         Returns: the message text (string) in which every character is shifted
              down the alphabet by the input shift
         '''
-        pass  # delete this line and replace with your code here
         dictionary = self.build_shift_dict(shift)
         shiftedMessage = ''
         for letter in self.message_text:
@@ -219,7 +218,7 @@ class CiphertextMessage(Message):
             self.message_text (string, determined by input text)
             self.valid_words (list, determined using helper function load_words)
         '''
-        pass  # delete this line and replace with your code here
+        Message.__init__(self, text)
 
     def decrypt_message(self):
         '''
@@ -230,23 +229,40 @@ class CiphertextMessage(Message):
         the message, then we would expect 26 - s to be the best shift value 
         for decrypting it.
 
-        Note: if multiple shifts are  equally good such that they all create 
+        Note: if multiple shifts are equally good such that they all create 
         the maximum number of you may choose any of those shifts (and their
         corresponding decrypted messages) to return
 
         Returns: a tuple of the best shift value used to decrypt the message
         and the decrypted message text using that shift value
         '''
-        pass  # delete this line and replace with your code here
+        maxTotalMatches = 0
+        bestShiftValue = 0
 
+        def getNumOfWords(testWords):
+            totalMatches = 0
+            for word in testWords:
+                if is_word(self.valid_words, word):
+                    totalMatches += 1
+            return totalMatches
 
+        for i in range(0, 26):
+            shiftValue = 26 - i
+            applyShiftResult = Message.apply_shift(self, shiftValue).split(' ')
+            numOfMatchedWords = getNumOfWords(applyShiftResult)
+            if numOfMatchedWords > maxTotalMatches:
+               maxTotalMatches = numOfMatchedWords
+               bestShiftValue = shiftValue
+        
+        decryptedMessage = Message.apply_shift(self, bestShiftValue)
+        return (bestShiftValue % 26, decryptedMessage)
 
 #Example test case (PlaintextMessage)
-plaintext = PlaintextMessage('hello', 2)
+plaintext = PlaintextMessage('Nonsense words: wax toward circular committee purple village eastern so number type message distance to cliff step', 11)
 # print('Expected Output: jgnnq')
-# print('Actual Output:', plaintext.get_message_text_encrypted())
+print('Actual Output:', plaintext.get_message_text_encrypted())
 
 #Example test case (CiphertextMessage)
-# ciphertext = CiphertextMessage('jgnnq')
+ciphertext = CiphertextMessage('Yzydpydp hzcod: hli ezhlco ntcnfwlc nzxxteepp afcawp gtwwlrp pldepcy dz yfxmpc ejap xpddlrp otdelynp ez nwtqq depa')
 # print('Expected Output:', (24, 'hello'))
-# print('Actual Output:', ciphertext.decrypt_message())
+print('Actual Output:', ciphertext.decrypt_message())
