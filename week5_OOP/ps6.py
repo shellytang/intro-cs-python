@@ -113,11 +113,7 @@ class Message(object):
         letterDictionary = {}
         def makeDictionary(typeOfStr, shift): 
             for i in range(0, 26):
-                try: 
-                    letterDictionary[typeOfStr[i]] = typeOfStr[i+shift]
-                except IndexError:
-                    diff = (i+shift) - 26
-                    letterDictionary[typeOfStr[i]] = typeOfStr[diff]
+                letterDictionary[typeOfStr[i]] = typeOfStr[(i+shift) % 26]
             return letterDictionary
 
         makeDictionary(lowerCase, shift)
@@ -271,7 +267,7 @@ def decrypt_story():
 # print('Actual Output:', plaintext.get_message_text_encrypted())
 
 #Example test case (CiphertextMessage)
-# ciphertext = CiphertextMessage('Yzydpydp hzcod: hli ezhlco ntcnfwlc nzxxteepp afcawp gtwwlrp pldepcy dz yfxmpc ejap xpddlrp otdelynp ez nwtqq depa')
+ciphertext = CiphertextMessage('Yzydpydp hzcod: hli ezhlco ntcnfwlc nzxxteepp afcawp gtwwlrp pldepcy dz yfxmpc ejap xpddlrp otdelynp ez nwtqq depa')
 # print('Expected Output:', (24, 'hello'))
-# print('Actual Output:', ciphertext.decrypt_message())
+print('Actual Output:', ciphertext.decrypt_message())
 
