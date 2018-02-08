@@ -3,7 +3,7 @@
 def fib_efficient(n, d):
     # if in is already in dictionary, just lookup and return
     if n in d:  
-        return d[n ]
+        return d[n]
     else:
         # otherwise, do recursive call, store the value and return
         ans = fib_efficient(n-1, d) + fib_efficient(n-2, d)
