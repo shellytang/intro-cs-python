@@ -22,7 +22,7 @@ plt.ylim(0, 1000) # set the y-axis limit
 # plt.xlabel('sample points')
 # plt.ylabel('linear function') 
 plt.plot(mySamples, myLinear, 'b-', label='linear') # b and r are colors and - and o are the point data displays
-plt.plot(mySamples, myQuadratic, 'ro', label='quadratic')
+plt.plot(mySamples, myQuadratic, 'ro', label='quadratic', linewidth=3.0) # size of pixels on the graph for line width
 plt.legend(loc='upper left') # plt.legend() <-- lets pylab decide
 plt.title('Linear vs. Quadratic')
 
