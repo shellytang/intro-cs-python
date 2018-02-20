@@ -14,8 +14,7 @@ class Food(object):
         return self.getValue()/self.getCost()
 
     def __str__(self):
-        return self.name + ': < ' + str(self.value)\ 
-        + ', ' + str(self.calories) + '>'
+        return self.name + ': < ' + str(self.value) + ', ' + str(self.calories) + '>'
 
 
 def buildMenu(names, values, calories):
