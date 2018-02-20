@@ -15,7 +15,7 @@ SCRABBLE_LETTER_VALUES = {
 # Helper code
 # (you don't need to understand this helper code)
 
-WORDLIST_FILENAME = "/Users/shellytang/mycode/intro-cs-python/week4_exceptions_testing_debugging/words.txt"
+WORDLIST_FILENAME = "/Users/shellytang/mycode/intro-cs-python/01_week4_exceptions_testing_debugging/words.txt"
 
 
 def loadWords():

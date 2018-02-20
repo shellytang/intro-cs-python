@@ -54,12 +54,12 @@ def get_story_string():
     """
     Returns: a joke in encrypted text.
     """
-    f = open("/Users/shellytang/mycode/intro-cs-python/week5_OOP/story.txt", "r")
+    f = open("/Users/shellytang/mycode/intro-cs-python/01_week5_OOP/story.txt", "r")
     story = str(f.read())
     f.close()
     return story
 
-WORDLIST_FILENAME = "/Users/shellytang/mycode/intro-cs-python/week5_OOP/words.txt"
+WORDLIST_FILENAME = "/Users/shellytang/mycode/intro-cs-python/01_week5_OOP/words.txt"
 
 class Message(object):
     ### DO NOT MODIFY THIS METHOD ###

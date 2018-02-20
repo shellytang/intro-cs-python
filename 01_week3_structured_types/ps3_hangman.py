@@ -9,7 +9,7 @@
 
 import random
 
-WORDLIST_FILENAME = "/Users/shellytang/mycode/intro-cs-python/week3_structured_types/words.txt"
+WORDLIST_FILENAME = "/Users/shellytang/mycode/intro-cs-python/01_week3_structured_types/words.txt"
 
 
 def loadWords():
